@@ -10,7 +10,7 @@ export const Categories = () => {
   const [selected, setSelected] = useState<string>();
   useEffect(() => {
     async function getCategories() {
-      const data = await fetch("http://localhost:3001/api/categories")
+      const data = await fetch("http://localhost:3002/api/categories")
       const json = await data.json()
       if (json) {
         setCategories(json)
@@ -34,7 +34,7 @@ export const Categories = () => {
     onClose()
   }
   async function onSave() {
-    const data = await fetch("/api/categories")
+    const data = await fetch("http://localhost:3002/api/categories")
     const json = await data.json()
     if (json) {
       setCategories(json)

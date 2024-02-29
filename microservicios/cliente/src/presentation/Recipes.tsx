@@ -10,7 +10,7 @@ export const Recipes = () => {
   const [selected, setSelected] = useState<string>();
   useEffect(() => {
     async function getRecipes() {
-      const data = await fetch("http:localhost:3002/api/recipes")
+      const data = await fetch("http://localhost:3001/api/recipes")
       const json = await data.json()
       if (json) {
         setRecipes(json)
@@ -32,7 +32,7 @@ export const Recipes = () => {
     onClose()
   }
   async function onSave() {
-    const data = await fetch("/api/recipes")
+    const data = await fetch("http://localhost:3001/api/recipes")
     const json = await data.json()
     if (json) {
       setRecipes(json)

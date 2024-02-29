@@ -15,7 +15,7 @@ export const RecipeNewEdit = (
   const [categories, setCategories] = useState<{ name: string, id: string }[]>()
   useEffect(() => {
     async function getCategories() {
-      const data = await fetch("http:localhost:3002/api/categories")
+      const data = await fetch("http://localhost:3002/api/categories")
       const json = await data.json()
       if (json) {
         setCategories(json)
@@ -26,7 +26,7 @@ export const RecipeNewEdit = (
 
   useEffect(() => {
     async function getRecipeById() {
-      const data = await fetch(`http:localhost:3002/api/recipes/${props.recipeId}`)
+      const data = await fetch(`http://localhost:3001/api/recipes/${props.recipeId}`)
       const json = await data.json()
       if (json) {
         setForm({
@@ -51,8 +51,11 @@ export const RecipeNewEdit = (
 
     }
     if (props.recipeId) {
-      await fetch(`http:localhost:3002/api/recipes/${data.id}`, {
+      await fetch(`http://localhost:3001/api/recipes/${data.id}`, {
         method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           id: data.id,
           title: data.title,
@@ -61,8 +64,11 @@ export const RecipeNewEdit = (
         })
       })
     } else {
-      await fetch('http:localhost:3002/api/recipes', {
+      await fetch('http://localhost:3001/api/recipes', {
         method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           id: data.id,
           title: data.title,

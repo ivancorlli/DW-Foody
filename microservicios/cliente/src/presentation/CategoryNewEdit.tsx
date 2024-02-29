@@ -33,16 +33,22 @@ export const CategoryNewEdit = (
       id: props.categoryId ? props.categoryId : btoa(JSON.stringify(Math.random() * 789))
     }
     if (props.categoryId) {
-      await fetch(`http://localhost:3001/api/categories/${data.id}`, {
+      await fetch(`http://localhost:3002/api/categories/${data.id}`, {
         method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           id: data.id,
           name: data.name
         })
       })
     } else {
-      await fetch('http://localhost:3001/api/categories', {
+      await fetch('http://localhost:3002/api/categories', {
         method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           id: data.id,
           name: data.name
